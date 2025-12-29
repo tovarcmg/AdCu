@@ -83,5 +83,16 @@ public partial class MainPage : ContentPage
     {
         Navigation.PushAsync(new AgregarCuenta());
     }
+
+    private void OnModificarClicked(object sender, EventArgs e)
+    {
+        var boton = sender as Button;
+        var item = boton?.CommandParameter as Item;
+
+        if (item != null)
+        {
+            Navigation.PushAsync(new ModificarCuenta(item.Nombre));
+        }
+    }
 }
 

@@ -14,6 +14,15 @@ public partial class AgregarCuenta : ContentPage
 
     private async void OnAgregarClicked(object sender, EventArgs e)
     {
+        if(string.IsNullOrWhiteSpace(txtBanco.Text) ||
+            string.IsNullOrWhiteSpace(txtPago.Text) ||
+            string.IsNullOrWhiteSpace(txtCorte.Text) ||
+            string.IsNullOrWhiteSpace(txtUltPag.Text))
+        {
+            await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
+            return;
+        }
+
         string json = Preferences.Get("cuentasJSON", "");
 
         ListaItems = string.IsNullOrEmpty(json)

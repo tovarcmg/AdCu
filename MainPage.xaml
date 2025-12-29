@@ -6,13 +6,7 @@
     <Grid Padding="10,0"
       RowDefinitions="Auto,Auto,Auto,Auto,*"
       RowSpacing="10">
-        
-        <!-- <Image
-                Source="dotnet_bot.png"
-                HeightRequest="100"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight"/> -->
-        
+
         <Label
              Grid.Row="0"
              Margin="0,0,0,0"
@@ -23,7 +17,7 @@
         <Button
             Grid.Row="2"
             x:Name="btnAgregar"
-            Text="Agregar cuenta"
+            Text="Agregar banco/servicio"
             WidthRequest="200"
             Clicked="btnAgregar_Clicked"
             HorizontalOptions="End"/>
@@ -40,22 +34,20 @@
                 <DataTemplate>
                     <Border Stroke="#DDDDDD"
                             StrokeThickness="1"
+                            Margin="0,0,0,10"
                             StrokeShape="RoundRectangle 10"
                             Padding="0"
                             VerticalOptions="Center"
-                            HorizontalOptions="FillAndExpand"
                             BackgroundColor="#FFFFFF">
                         <VerticalStackLayout Spacing="10"
                                              Padding="10"
                                              BackgroundColor="#FFFFFF">
-                            <!-- Grid para dividir en 2 columnas -->
                             <Grid ColumnSpacing="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Primera columna -->
                                 <VerticalStackLayout Spacing="10"
                                                      Grid.Column="0">
                                     <Label Text="Banco/Servicio"
@@ -70,7 +62,6 @@
                                            FontSize="14"/>
                                 </VerticalStackLayout>
 
-                                <!-- Segunda columna -->
                                 <VerticalStackLayout Spacing="10"
                                                      Grid.Column="1">
                                     <Label Text="Fecha de corte"
@@ -86,13 +77,26 @@
                                 </VerticalStackLayout>
                             </Grid>
 
-                            <!-- Botón debajo -->
-                            <Button Text="Borrar"
-                                    HorizontalOptions="FillAndExpand"
-                                    Clicked="OnEliminarClicked"
-                                    CommandParameter="{Binding .}"
-                                    BackgroundColor="Red"
-                                    TextColor="White"/>
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0"
+                                        Text="Borrar"
+                                        Clicked="OnEliminarClicked"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Red"
+                                        TextColor="White"/>
+
+                                <Button Grid.Column="1"
+                                        Text="Modificar"
+                                        Clicked="OnModificarClicked"
+                                        CommandParameter="{Binding .}"/>
+                                
+                            </Grid>
+
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
