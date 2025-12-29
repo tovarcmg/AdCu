@@ -3,132 +3,144 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyMauiApp.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="10,0"
-            Spacing="10">
-            <!-- <Image
+    <Grid Padding="10,0"
+      RowDefinitions="Auto,Auto,Auto,Auto,*"
+      RowSpacing="10">
+        <!-- <Image
                 Source="dotnet_bot.png"
                 HeightRequest="100"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight"/> -->
 
-            <Label
-                Margin="0,10,0,0"
-                HorizontalTextAlignment="Center"
-                Text="Administras tus cuentas en una sola app"
-                FontSize="12"/>
+        <Label
+            Grid.Row="0"
+            Margin="0,10,0,0"
+            HorizontalTextAlignment="Center"
+            Text="Administras tus cuentas en una sola app"
+            FontSize="12"/>
 
-            <Border Stroke="#DDDDDD"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="10"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="#FFFFFF">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Margin="0,0,0,0"
-                        HorizontalTextAlignment="Center"
-                        Text="Nueva cuenta de banco"
-                        FontSize="12"/>
-                    <Entry
-                        x:Name="txtBanco"
-                        Placeholder="Banco"/>
+        <Border Grid.Row="1" Stroke="#DDDDDD"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#FFFFFF">
+            <VerticalStackLayout Spacing="10">
 
-                    <Entry
-                        x:Name="txtPago"
-                        Placeholder="Monto"/>
+                <Label
+                    Margin="0,0,0,0"
+                    HorizontalTextAlignment="Center"
+                    Text="Nueva cuenta de banco"
+                    FontSize="12"/>
 
-                    <Entry
-                        x:Name="txtCorte"
-                        Placeholder="Fecha de corte"/>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <Entry
-                        x:Name="txtUltPag"
-                        Placeholder="Fecha de ultimo pago"/>
-                </VerticalStackLayout>
-            </Border>
+                    <VerticalStackLayout Spacing="10"
+                                         Grid.Column="0">
+                        <Entry
+                            x:Name="txtBanco"
+                            Placeholder="Banco"/>
+                        <Entry
+                            x:Name="txtPago"
+                            Placeholder="Monto"/>
+                    </VerticalStackLayout>
 
+                    <VerticalStackLayout Spacing="10"
+                                         Grid.Column="1">
+                        <Entry
+                            x:Name="txtCorte"
+                            Placeholder="Fecha de corte"/>
 
-            <Button
-                x:Name="btnAgregar"
-                Text="Guardar"
-                WidthRequest="100"
-                Clicked="OnAgregarClicked"
-                HorizontalOptions="End"/>
+                        <Entry
+                            x:Name="txtUltPag"
+                            Placeholder="Fecha de ultimo pago"/>
+                    </VerticalStackLayout>
+                </Grid>
 
-            <Label
-                HorizontalTextAlignment="Center"
-                FontSize="20"
-                Text="Bancos"/>
+            </VerticalStackLayout>
+        </Border>
 
-            <CollectionView ItemsSource="{Binding ListaItems}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Stroke="#DDDDDD"
-                                StrokeThickness="1"
-                                StrokeShape="RoundRectangle 10"
-                                Padding="0"
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                BackgroundColor="#FFFFFF">
-                            <VerticalStackLayout Spacing="10"
-                                                 Padding="10"
-                                                 BackgroundColor="#FFFFFF">
-                                <!-- Grid para dividir en 2 columnas -->
-                                <Grid ColumnSpacing="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+        <Button
+            Grid.Row="2"
+            x:Name="btnAgregar"
+            Text="Guardar"
+            WidthRequest="100"
+            Clicked="OnAgregarClicked"
+            HorizontalOptions="End"/>
 
-                                    <!-- Primera columna -->
-                                    <VerticalStackLayout Spacing="10"
-                                                         Grid.Column="0">
-                                        <Label Text="Banco"
-                                               FontAttributes="Bold"
-                                               FontSize="10"/>
-                                        <Label Text="{Binding Nombre}"
-                                               FontSize="14"/>
-                                        <Label Text="Deuda"
-                                               FontAttributes="Bold"
-                                               FontSize="10"/>
-                                        <Label Text="{Binding Deuda}"
-                                               FontSize="14"/>
-                                    </VerticalStackLayout>
+        <Label
+            Grid.Row="3"
+            HorizontalTextAlignment="Center"
+            FontSize="20"
+            Text="Cuentas"/>
 
-                                    <!-- Segunda columna -->
-                                    <VerticalStackLayout Spacing="10"
-                                                         Grid.Column="1">
-                                        <Label Text="Fecha de corte"
-                                               FontAttributes="Bold"
-                                               FontSize="10"/>
-                                        <Label Text="{Binding Corte}"
-                                               FontSize="14"/>
-                                        <Label Text="Ultimo pago"
-                                               FontAttributes="Bold"
-                                               FontSize="10"/>
-                                        <Label Text="{Binding UltPag}"
-                                               FontSize="14"/>
-                                    </VerticalStackLayout>
-                                </Grid>
+        <CollectionView Grid.Row="4" ItemsSource="{Binding ListaItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#DDDDDD"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 10"
+                            Padding="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#FFFFFF">
+                        <VerticalStackLayout Spacing="10"
+                                             Padding="10"
+                                             BackgroundColor="#FFFFFF">
+                            <!-- Grid para dividir en 2 columnas -->
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                                <!-- Botón debajo -->
-                                <Button Text="Borrar"
-                                        HorizontalOptions="FillAndExpand"
-                                        Clicked="OnEliminarClicked"
-                                        CommandParameter="{Binding .}"
-                                        BackgroundColor="Red"
-                                        TextColor="White"/>
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <!-- Primera columna -->
+                                <VerticalStackLayout Spacing="10"
+                                                     Grid.Column="0">
+                                    <Label Text="Banco"
+                                           FontAttributes="Bold"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding Nombre}"
+                                           FontSize="14"/>
+                                    <Label Text="Monto"
+                                           FontAttributes="Bold"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding Deuda}"
+                                           FontSize="14"/>
+                                </VerticalStackLayout>
 
+                                <!-- Segunda columna -->
+                                <VerticalStackLayout Spacing="10"
+                                                     Grid.Column="1">
+                                    <Label Text="Fecha de corte"
+                                           FontAttributes="Bold"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding Corte}"
+                                           FontSize="14"/>
+                                    <Label Text="Fecha de ultimo pago"
+                                           FontAttributes="Bold"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding UltPag}"
+                                           FontSize="14"/>
+                                </VerticalStackLayout>
+                            </Grid>
 
-        </VerticalStackLayout>
-    </ScrollView>
-
+                            <!-- Botón debajo -->
+                            <Button Text="Borrar"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="OnEliminarClicked"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red"
+                                    TextColor="White"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
