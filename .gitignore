@@ -1,0 +1,30 @@
+## .NET / Visual Studio / MAUI
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# MAUI specific
+**/Platforms/*/bin/
+**/Platforms/*/obj/
