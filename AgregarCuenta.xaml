@@ -37,7 +37,7 @@
                                          Grid.Column="0">
                         <Entry
                             x:Name="txtBanco"
-                            Placeholder="Banco"/>
+                            Placeholder="Banco/Servicio"/>
                         <Entry
                             x:Name="txtPago"
                             Placeholder="Monto"/>

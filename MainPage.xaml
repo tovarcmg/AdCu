@@ -15,7 +15,7 @@
         
         <Label
              Grid.Row="0"
-             Margin="0,10,0,0"
+             Margin="0,0,0,0"
              HorizontalTextAlignment="Center"
              Text="Administra tus cuentas en una sola app"
              FontSize="12"/>
@@ -58,7 +58,7 @@
                                 <!-- Primera columna -->
                                 <VerticalStackLayout Spacing="10"
                                                      Grid.Column="0">
-                                    <Label Text="Banco"
+                                    <Label Text="Banco/Servicio"
                                            FontAttributes="Bold"
                                            FontSize="10"/>
                                     <Label Text="{Binding Nombre}"
