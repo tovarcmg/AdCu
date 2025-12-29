@@ -1,59 +1,87 @@
 ﻿using System.Collections.ObjectModel;
+using System.Text.Json;
 
 namespace MyMauiApp;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    public ObservableCollection<Item> ListaItems { get; set; }
 
-	public ObservableCollection<Item> ListaItems { get; set; }
+    public MainPage()
+    {
+        InitializeComponent();
 
-	public MainPage()
-	{
-		InitializeComponent();
+        string json = Preferences.Get("cuentasJSON", "");
 
-		ListaItems = new ObservableCollection<Item>
-		{
-			new Item { Nombre = "Santander", Deuda = "500.00", Corte = "12/12/2025", UltPag = "25/12/2025" },
-		};
+        ListaItems = new ObservableCollection<Item>();
 
-		BindingContext = this;
+        BindingContext = this;
+    }
 
-	}
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
 
-	private void OnAgregarClicked(object sender, EventArgs e)
-	{
-		ListaItems.Add(new Item
-		{
-			Nombre = txtBanco.Text,
-			Deuda = txtPago.Text,
-			Corte = txtCorte.Text,
-			UltPag = txtUltPag.Text
-		});
+        string json = Preferences.Get("cuentasJSON", "");
 
-		txtBanco.Text = "";
-		txtPago.Text = "";
-		txtCorte.Text = "";
-		txtUltPag.Text = "";
-	}
+        ListaItems.Clear();
 
-	private void OnEliminarClicked(object sender, EventArgs e)
-	{
-		var boton = sender as Button;
-		var item = boton?.CommandParameter as Item;
+        if (!string.IsNullOrEmpty(json))
+        {
+            var items = JsonSerializer.Deserialize<ObservableCollection<Item>>(json);
 
-		if (item != null)
-		{
-			ListaItems.Remove(item);
-		}
-	}
-}
+            double total = 0;
 
-public class Item
-{
-	public string? Nombre { get; set; }
-	public string? Deuda { get; set; }
-	public string? Corte { get; set; }
-	public string? UltPag { get; set; }
+            foreach (var item in items)
+            {
+                ListaItems.Add(item);
+
+                try
+                {
+                    total = total + Convert.ToDouble(item.Deuda);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            lblCuentas.Text = $"Cuentas ({ListaItems.Count}) - Total: ${total:N2}";
+        }
+
+    }
+
+    private void OnEliminarClicked(object sender, EventArgs e)
+    {
+        var boton = sender as Button;
+        var item = boton?.CommandParameter as Item;
+
+        if (item != null)
+        {
+            ListaItems.Remove(item);
+            Preferences.Set("cuentasJSON", JsonSerializer.Serialize(ListaItems));
+
+            double total = 0;
+
+            foreach (var x in ListaItems)
+            {
+                try
+                {
+                    total = total + Convert.ToDouble(x.Deuda);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            lblCuentas.Text = $"Cuentas ({ListaItems.Count}) - Total: ${total:N2}";
+        }
+    }
+
+    private void btnAgregar_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AgregarCuenta());
+    }
 }
 

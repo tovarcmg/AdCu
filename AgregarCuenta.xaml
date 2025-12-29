@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.AgregarCuenta">
+
+    <Grid Padding="10,0"
+      RowDefinitions="Auto,Auto,Auto,Auto,*"
+      RowSpacing="10">
+        <!-- <Image
+                Source="dotnet_bot.png"
+                HeightRequest="100"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight"/> -->
+
+        <Border Grid.Row="1" Stroke="#DDDDDD"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#FFFFFF">
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Margin="0,0,0,0"
+                    HorizontalTextAlignment="Center"
+                    Text="Nueva cuenta de banco"
+                    FontSize="12"/>
+
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <VerticalStackLayout Spacing="10"
+                                         Grid.Column="0">
+                        <Entry
+                            x:Name="txtBanco"
+                            Placeholder="Banco"/>
+                        <Entry
+                            x:Name="txtPago"
+                            Placeholder="Monto"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="10"
+                                         Grid.Column="1">
+                        <Entry
+                            x:Name="txtCorte"
+                            Placeholder="Fecha de corte"/>
+
+                        <Entry
+                            x:Name="txtUltPag"
+                            Placeholder="Fecha límite pago"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+            </VerticalStackLayout>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            x:Name="btnAgregar"
+            Text="Agregar"
+            WidthRequest="200"
+            Clicked="OnAgregarClicked"
+            HorizontalOptions="End"/>
+
+    </Grid>
+</ContentPage>

@@ -6,74 +6,30 @@
     <Grid Padding="10,0"
       RowDefinitions="Auto,Auto,Auto,Auto,*"
       RowSpacing="10">
+        
         <!-- <Image
                 Source="dotnet_bot.png"
                 HeightRequest="100"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight"/> -->
-
+        
         <Label
-            Grid.Row="0"
-            Margin="0,10,0,0"
-            HorizontalTextAlignment="Center"
-            Text="Administras tus cuentas en una sola app"
-            FontSize="12"/>
-
-        <Border Grid.Row="1" Stroke="#DDDDDD"
-                StrokeThickness="1"
-                StrokeShape="RoundRectangle 10"
-                Padding="10"
-                VerticalOptions="Center"
-                HorizontalOptions="FillAndExpand"
-                BackgroundColor="#FFFFFF">
-            <VerticalStackLayout Spacing="10">
-
-                <Label
-                    Margin="0,0,0,0"
-                    HorizontalTextAlignment="Center"
-                    Text="Nueva cuenta de banco"
-                    FontSize="12"/>
-
-                <Grid ColumnSpacing="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <VerticalStackLayout Spacing="10"
-                                         Grid.Column="0">
-                        <Entry
-                            x:Name="txtBanco"
-                            Placeholder="Banco"/>
-                        <Entry
-                            x:Name="txtPago"
-                            Placeholder="Monto"/>
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Spacing="10"
-                                         Grid.Column="1">
-                        <Entry
-                            x:Name="txtCorte"
-                            Placeholder="Fecha de corte"/>
-
-                        <Entry
-                            x:Name="txtUltPag"
-                            Placeholder="Fecha de ultimo pago"/>
-                    </VerticalStackLayout>
-                </Grid>
-
-            </VerticalStackLayout>
-        </Border>
+             Grid.Row="0"
+             Margin="0,10,0,0"
+             HorizontalTextAlignment="Center"
+             Text="Administra tus cuentas en una sola app"
+             FontSize="12"/>
 
         <Button
             Grid.Row="2"
             x:Name="btnAgregar"
-            Text="Guardar"
-            WidthRequest="100"
-            Clicked="OnAgregarClicked"
+            Text="Agregar cuenta"
+            WidthRequest="200"
+            Clicked="btnAgregar_Clicked"
             HorizontalOptions="End"/>
 
         <Label
+            x:Name="lblCuentas"
             Grid.Row="3"
             HorizontalTextAlignment="Center"
             FontSize="20"
@@ -122,7 +78,7 @@
                                            FontSize="10"/>
                                     <Label Text="{Binding Corte}"
                                            FontSize="14"/>
-                                    <Label Text="Fecha de ultimo pago"
+                                    <Label Text="Fecha límite pago"
                                            FontAttributes="Bold"
                                            FontSize="10"/>
                                     <Label Text="{Binding UltPag}"
