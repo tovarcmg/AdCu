@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Login">
+
+    <VerticalStackLayout VerticalOptions="Center" Padding="10">
+
+        <Label
+             Margin="0,0,0,0"
+             HorizontalTextAlignment="Center"
+             Text="AdCu"
+             FontSize="12"/>
+
+        <Button x:Name="btnBio"
+            MaximumWidthRequest="500"
+            CornerRadius="8"
+            IsVisible="{OnPlatform Android=True, iOS=True, WinUI=True}"
+            Text="Iniciar con huella"
+            BackgroundColor="{AppThemeBinding Light=#0059A4, Dark=white}"
+            TextColor="{AppThemeBinding Light=white, Dark=#0059A4}"
+            Margin="0,5"
+            Clicked="btnBio_Clicked" />
+
+    </VerticalStackLayout>
+</ContentPage>
