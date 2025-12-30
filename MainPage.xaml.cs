@@ -34,16 +34,18 @@ public partial class MainPage : ContentPage
 
             foreach (var item in items)
             {
-                ListaItems.Add(item);
-
                 try
                 {
+                    item.Deuda = "$" + Convert.ToDouble(item.Deuda).ToString("N2");
+
                     total = total + Convert.ToDouble(item.Deuda);
                 }
                 catch (Exception)
                 {
 
                 }
+
+                ListaItems.Add(item);
             }
 
             lblCuentas.Text = $"Cuentas ({ListaItems.Count}) - Total: ${total:N2}";
