@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Plugin.LocalNotification;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -15,7 +16,7 @@ public partial class AgregarCuenta : ContentPage
 
     private async void OnAgregarClicked(object sender, EventArgs e)
     {
-        if(string.IsNullOrWhiteSpace(txtBanco.Text) ||
+        if (string.IsNullOrWhiteSpace(txtBanco.Text) ||
             string.IsNullOrWhiteSpace(txtPago.Text) ||
             string.IsNullOrWhiteSpace(txtCorte.Text) ||
             string.IsNullOrWhiteSpace(txtUltPag.Text))
@@ -40,6 +41,34 @@ public partial class AgregarCuenta : ContentPage
         });
 
         Preferences.Set("cuentasJSON", JsonSerializer.Serialize(ListaItems));
+
+        string fecha = txtCorte.Text.Trim();
+
+        try
+        {
+            DateTime fechaCorte = DateTime.ParseExact(fecha, "dd/MM/yyyy", null);
+
+            fechaCorte = fechaCorte.AddHours(9);
+            //fechaCorte = DateTime.Now.AddSeconds(10);
+
+            var request = new NotificationRequest
+            {
+                NotificationId = DateTime.Now.GetHashCode(),
+                Title = "Fecha de corte",
+                Description = "Te recordamos que la fecha de pago de " + txtBanco.Text.Trim() + " es hoy.",
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = fechaCorte,
+                }
+            };
+
+            await LocalNotificationCenter.Current.Show(request);
+        }
+        catch (Exception)
+        {
+            //await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
+            //return;
+        }
 
         txtBanco.Text = "";
         txtPago.Text = "";

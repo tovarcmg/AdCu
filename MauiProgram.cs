@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 
 namespace MyMauiApp;
 
@@ -19,6 +20,8 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        builder.UseLocalNotification();
+
+        return builder.Build();
 	}
 }
