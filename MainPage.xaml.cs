@@ -36,6 +36,8 @@ public partial class MainPage : ContentPage
             {
                 if (!string.IsNullOrEmpty(item.numeroTarjeta) && item.numeroTarjeta.Length == 20)
                     item.numeroTarjeta = "**** **** **** " + item.numeroTarjeta.Substring(15, 4);
+                else
+                    item.numeroTarjeta = item.numeroTarjeta.Replace(" ", "");
 
                 try
                 {

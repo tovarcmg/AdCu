@@ -61,7 +61,7 @@
                 <Entry
                     x:Name="txtNumero"
                     Keyboard="Numeric"
-                    Placeholder="Numero de tarjeta"/>
+                    Placeholder="Numero de tarjeta o folio"/>
 
             </VerticalStackLayout>
         </Border>
