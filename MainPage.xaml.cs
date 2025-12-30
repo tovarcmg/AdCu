@@ -39,9 +39,9 @@ public partial class MainPage : ContentPage
 
                 try
                 {
-                    item.Deuda = "$" + Convert.ToDouble(item.Deuda).ToString("N2");
-
                     total = total + Convert.ToDouble(item.Deuda);
+
+                    item.Deuda = "$" + Convert.ToDouble(item.Deuda).ToString("N2");
                 }
                 catch (Exception)
                 {

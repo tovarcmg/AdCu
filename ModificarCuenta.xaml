@@ -19,7 +19,7 @@
                 <Label
                     Margin="0,0,0,0"
                     HorizontalTextAlignment="Center"
-                    Text="Modificar informacíon"
+                    Text="Informacíon del banco ó servicio"
                     FontSize="12"/>
 
                 <Grid ColumnSpacing="10">
@@ -47,7 +47,7 @@
 
                         <Entry
                             x:Name="txtUltPag"
-                            Placeholder="Fecha límite pago"/>
+                            Placeholder="Fecha límite de pago"/>
                     </VerticalStackLayout>
                 </Grid>
 
