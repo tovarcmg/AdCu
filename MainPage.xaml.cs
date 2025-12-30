@@ -34,6 +34,9 @@ public partial class MainPage : ContentPage
 
             foreach (var item in items)
             {
+                if (!string.IsNullOrEmpty(item.numeroTarjeta) && item.numeroTarjeta.Length == 20)
+                    item.numeroTarjeta = "**** **** **** " + item.numeroTarjeta.Substring(15, 4);
+
                 try
                 {
                     item.Deuda = "$" + Convert.ToDouble(item.Deuda).ToString("N2");
@@ -49,8 +52,10 @@ public partial class MainPage : ContentPage
             }
 
             lblCuentas.Text = $"Cuentas ({ListaItems.Count}) - Total: ${total:N2}";
-        }
 
+            await tarjetas.ScaleTo(1.09, 200);
+            await tarjetas.ScaleTo(1, 200);
+        }
     }
 
     private void OnEliminarClicked(object sender, EventArgs e)
@@ -97,4 +102,3 @@ public partial class MainPage : ContentPage
         }
     }
 }
-

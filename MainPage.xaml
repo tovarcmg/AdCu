@@ -19,6 +19,7 @@
             x:Name="btnAgregar"
             Text="Agregar banco/servicio"
             WidthRequest="200"
+            BackgroundColor="DeepSkyBlue"
             Clicked="btnAgregar_Clicked"
             HorizontalOptions="End"/>
 
@@ -29,7 +30,7 @@
             FontSize="20"
             Text="Cuentas"/>
 
-        <CollectionView Grid.Row="4" ItemsSource="{Binding ListaItems}">
+        <CollectionView x:Name="tarjetas"  Grid.Row="4" ItemsSource="{Binding ListaItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border Stroke="#DDDDDD"
@@ -51,8 +52,8 @@
 
                                 <Frame.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="LightBlue" Offset="0.0" />
-                                        <GradientStop Color="#2DCCCD" Offset="1.0" />
+                                        <GradientStop Color="DeepSkyBlue" Offset="0.0" />
+                                        <GradientStop Color="LightBlue" Offset="1.0" />
                                     </LinearGradientBrush>
                                 </Frame.Background>
 
@@ -109,6 +110,7 @@
 
                                 <Button Grid.Column="1"
                                         Text="Modificar"
+                                        BackgroundColor="DeepSkyBlue"
                                         Clicked="OnModificarClicked"
                                         CommandParameter="{Binding .}"/>
 

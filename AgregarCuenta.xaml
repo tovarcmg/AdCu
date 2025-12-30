@@ -71,6 +71,7 @@
             x:Name="btnAgregar"
             Text="Agregar"
             WidthRequest="200"
+            BackgroundColor="DeepSkyBlue"
             Clicked="OnAgregarClicked"
             HorizontalOptions="End"/>
 

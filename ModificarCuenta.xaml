@@ -64,6 +64,7 @@
             x:Name="btnModificar"
             Text="Modificar"
             WidthRequest="200"
+            BackgroundColor="DeepSkyBlue"
             Clicked="btnModificar_Clicked"
             HorizontalOptions="End"/>
 
