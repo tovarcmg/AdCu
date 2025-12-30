@@ -55,7 +55,13 @@
                             x:Name="txtUltPag"
                             Placeholder="Fecha límite pago"/>
                     </VerticalStackLayout>
+
                 </Grid>
+
+                <Entry
+                    x:Name="txtNumero"
+                    Keyboard="Numeric"
+                    Placeholder="Numero de tarjeta"/>
 
             </VerticalStackLayout>
         </Border>

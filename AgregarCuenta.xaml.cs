@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace MyMauiApp;
 
@@ -31,10 +32,11 @@ public partial class AgregarCuenta : ContentPage
 
         ListaItems.Add(new Item
         {
-            Nombre = txtBanco.Text,
-            Deuda = txtPago.Text,
-            Corte = txtCorte.Text,
-            UltPag = txtUltPag.Text
+            Nombre = txtBanco.Text.Trim(),
+            Deuda = txtPago.Text.Trim(),
+            Corte = txtCorte.Text.Trim(),
+            UltPag = txtUltPag.Text.Trim(),
+            numeroTarjeta = string.IsNullOrWhiteSpace(txtNumero.Text) ? "" : Regex.Replace(txtNumero.Text.Trim(), ".{4}", "$0 ")
         });
 
         Preferences.Set("cuentasJSON", JsonSerializer.Serialize(ListaItems));
@@ -43,6 +45,7 @@ public partial class AgregarCuenta : ContentPage
         txtPago.Text = "";
         txtCorte.Text = "";
         txtUltPag.Text = "";
+        txtNumero.Text = "";
 
         await Navigation.PopAsync();
     }
@@ -54,4 +57,5 @@ public class Item
     public string? Deuda { get; set; }
     public string? Corte { get; set; }
     public string? UltPag { get; set; }
+    public string? numeroTarjeta { get; set; }
 }

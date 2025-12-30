@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace MyMauiApp;
 
@@ -27,6 +28,7 @@ public partial class ModificarCuenta : ContentPage
                     txtPago.Text = item.Deuda;
                     txtCorte.Text = item.Corte;
                     txtUltPag.Text = item.UltPag;
+                    txtNumero.Text = item.numeroTarjeta.Replace(" ","");
                 }
             }
         }
@@ -63,7 +65,8 @@ public partial class ModificarCuenta : ContentPage
             Nombre = txtBanco.Text.Trim(),
             Deuda = txtPago.Text.Trim(),
             Corte = txtCorte.Text.Trim(),
-            UltPag = txtUltPag.Text.Trim()
+            UltPag = txtUltPag.Text.Trim(),
+            numeroTarjeta = string.IsNullOrWhiteSpace(txtNumero.Text) ? "" : Regex.Replace(txtNumero.Text.Trim(), ".{4}", "$0 ") 
         });
 
         // 5️ Guardar nuevamente
@@ -74,6 +77,7 @@ public partial class ModificarCuenta : ContentPage
         txtPago.Text = string.Empty;
         txtCorte.Text = string.Empty;
         txtUltPag.Text = string.Empty;
+        txtNumero.Text = string.Empty;
 
         // 7️ Regresar
         await Navigation.PopAsync();

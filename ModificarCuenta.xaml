@@ -51,6 +51,11 @@
                     </VerticalStackLayout>
                 </Grid>
 
+                <Entry
+                    x:Name="txtNumero"
+                    Keyboard="Numeric"
+                    Placeholder="Numero de tarjeta"/>
+
             </VerticalStackLayout>
         </Border>
 

@@ -42,40 +42,57 @@
                         <VerticalStackLayout Spacing="10"
                                              Padding="10"
                                              BackgroundColor="#FFFFFF">
-                            <Grid ColumnSpacing="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <Frame
+                                Padding="10"
+                                CornerRadius="10"
+                                HasShadow="True"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="200">
 
-                                <VerticalStackLayout Spacing="10"
-                                                     Grid.Column="0">
-                                    <Label Text="Banco/Servicio"
-                                           FontAttributes="Bold"
-                                           FontSize="10"/>
-                                    <Label Text="{Binding Nombre}"
-                                           FontSize="14"/>
-                                    <Label Text="Monto"
-                                           FontAttributes="Bold"
-                                           FontSize="10"/>
-                                    <Label Text="{Binding Deuda}"
-                                           FontSize="14"/>
-                                </VerticalStackLayout>
+                                <Frame.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="LightBlue" Offset="0.0" />
+                                        <GradientStop Color="#2DCCCD" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
 
-                                <VerticalStackLayout Spacing="10"
-                                                     Grid.Column="1">
-                                    <Label Text="Fecha de corte"
-                                           FontAttributes="Bold"
-                                           FontSize="10"/>
-                                    <Label Text="{Binding Corte}"
-                                           FontSize="14"/>
-                                    <Label Text="Fecha límite pago"
-                                           FontAttributes="Bold"
-                                           FontSize="10"/>
-                                    <Label Text="{Binding UltPag}"
-                                           FontSize="14"/>
-                                </VerticalStackLayout>
-                            </Grid>
+                                <Grid RowDefinitions="Auto,*,Auto">
+
+                                    <!-- Logo -->
+                                    <Image Source="visa.png"
+                                       HeightRequest="40"
+                                       HorizontalOptions="End"/>
+
+                                    <!-- Número de tarjeta -->
+                                    <Label Grid.Row="1"
+                                       Text="{Binding numeroTarjeta}"
+                                       FontSize="22"
+                                       TextColor="White"
+                                       VerticalOptions="Center"/>
+
+                                    <!-- Titular y vencimiento -->
+                                    <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+                                        <StackLayout>
+                                            <Label Text="Banco/Servicio"
+                                               FontSize="10"
+                                               TextColor="White"/>
+                                            <Label Text="{Binding Nombre}"
+                                               FontSize="14"
+                                               TextColor="White"/>
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="1">
+                                            <Label Text="Adeudo"
+                                               FontSize="10"
+                                               TextColor="White"/>
+                                            <Label Text="{Binding Deuda}"
+                                               FontSize="14"
+                                               TextColor="White"/>
+                                        </StackLayout>
+                                    </Grid>
+
+                                </Grid>
+                            </Frame>
 
                             <Grid ColumnSpacing="10">
                                 <Grid.ColumnDefinitions>
@@ -94,7 +111,7 @@
                                         Text="Modificar"
                                         Clicked="OnModificarClicked"
                                         CommandParameter="{Binding .}"/>
-                                
+
                             </Grid>
 
                         </VerticalStackLayout>
