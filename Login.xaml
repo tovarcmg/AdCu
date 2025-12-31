@@ -6,19 +6,25 @@
     <VerticalStackLayout VerticalOptions="Center" Padding="10">
 
         <Label
-             Margin="0,0,0,0"
+             Margin="0,0,0,10"
              HorizontalTextAlignment="Center"
              Text="AdCu"
+             FontSize="16"/>
+
+        <Label
+             Margin="0,0,0,10"
+             HorizontalTextAlignment="Center"
+             Text="Administracion de cuentas"
              FontSize="12"/>
 
         <Button x:Name="btnBio"
             MaximumWidthRequest="500"
             CornerRadius="8"
             IsVisible="{OnPlatform Android=True, iOS=True, WinUI=True}"
-            Text="Iniciar con huella"
+            Text="Iniciar sesión"
             BackgroundColor="{AppThemeBinding Light=#0059A4, Dark=white}"
             TextColor="{AppThemeBinding Light=white, Dark=#0059A4}"
-            Margin="0,5"
+            Margin="0,0,0,10"
             Clicked="btnBio_Clicked" />
 
     </VerticalStackLayout>
