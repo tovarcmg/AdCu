@@ -9,7 +9,19 @@ public partial class Login : ContentPage
         InitializeComponent();
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        validarHuella();
+    }
+
     private async void btnBio_Clicked(object sender, EventArgs e)
+    {
+        validarHuella();
+    }
+
+    private async void validarHuella()
     {
         var availability = BiometricAuthenticationService.Default.IsPlatformSupported;
 
