@@ -12,6 +12,13 @@ public partial class AgregarCuenta : ContentPage
     public AgregarCuenta()
     {
         InitializeComponent();
+
+        solicitarPermisos();
+    }
+
+    public async void solicitarPermisos()
+    {
+        await LocalNotificationCenter.Current.RequestNotificationPermission();
     }
 
     private async void OnAgregarClicked(object sender, EventArgs e)
@@ -67,7 +74,7 @@ public partial class AgregarCuenta : ContentPage
         catch (Exception)
         {
             //await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
-            //return;
+            return;
         }
 
         txtBanco.Text = "";

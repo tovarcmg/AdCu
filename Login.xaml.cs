@@ -11,6 +11,14 @@ public partial class Login : ContentPage
 
     private async void btnBio_Clicked(object sender, EventArgs e)
     {
+        var availability = BiometricAuthenticationService.Default.IsPlatformSupported;
+
+        if (!availability)
+        {
+            await DisplayAlert("Error", "Biometric authentication is not available.", "Ok");
+            return;
+        }
+
         var result = await BiometricAuthenticationService.Default.AuthenticateAsync(
             new AuthenticationRequest()
             {

@@ -24,7 +24,7 @@
             Text="Iniciar sesión"
             BackgroundColor="{AppThemeBinding Light=#0059A4, Dark=white}"
             TextColor="{AppThemeBinding Light=white, Dark=#0059A4}"
-            Margin="0,0,0,10"
+            Margin="0,0,0,0"
             Clicked="btnBio_Clicked" />
 
     </VerticalStackLayout>
