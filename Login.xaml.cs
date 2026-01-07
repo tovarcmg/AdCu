@@ -47,7 +47,7 @@ public partial class Login : ContentPage
         }
         else
         {
-            await DisplayAlert("Error", "Authentication failed.", "Ok");
+            //await DisplayAlert("Error", "Authentication failed.", "Ok");
         }
     }
 }

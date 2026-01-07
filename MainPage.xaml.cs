@@ -1,5 +1,4 @@
-﻿using Plugin.LocalNotification;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 
 namespace MyMauiApp;

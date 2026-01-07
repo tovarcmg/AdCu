@@ -1,5 +1,4 @@
-﻿using Plugin.LocalNotification;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -12,13 +11,6 @@ public partial class AgregarCuenta : ContentPage
     public AgregarCuenta()
     {
         InitializeComponent();
-
-        solicitarPermisos();
-    }
-
-    public async void solicitarPermisos()
-    {
-        await LocalNotificationCenter.Current.RequestNotificationPermission();
     }
 
     private async void OnAgregarClicked(object sender, EventArgs e)
@@ -58,18 +50,6 @@ public partial class AgregarCuenta : ContentPage
             fechaCorte = fechaCorte.AddHours(9);
             //fechaCorte = DateTime.Now.AddSeconds(10);
 
-            var request = new NotificationRequest
-            {
-                NotificationId = DateTime.Now.GetHashCode(),
-                Title = "Fecha de corte",
-                Description = "Te recordamos que la fecha de pago de " + txtBanco.Text.Trim() + " es hoy.",
-                Schedule = new NotificationRequestSchedule
-                {
-                    NotifyTime = fechaCorte,
-                }
-            };
-
-            await LocalNotificationCenter.Current.Show(request);
         }
         catch (Exception)
         {
