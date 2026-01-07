@@ -1,4 +1,8 @@
-﻿using Plugin.Maui.Biometric;
+﻿#if WINDOWS
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
+#endif
+using Plugin.Maui.Biometric;
 
 namespace MyMauiApp;
 
@@ -7,6 +11,15 @@ public partial class Login : ContentPage
     public Login()
     {
         InitializeComponent();
+
+#if WINDOWS
+        var toast = new AppNotificationBuilder()
+            .AddText("title")
+            .AddText("message")
+            .BuildNotification();
+
+        AppNotificationManager.Default.Show(toast);
+#endif
     }
 
     protected override async void OnAppearing()

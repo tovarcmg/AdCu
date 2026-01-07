@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
 using Firebase.Messaging;
-using MyMauiApp;
 
 [Service(Exported = false)]
 [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
