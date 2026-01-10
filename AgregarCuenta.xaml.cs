@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -48,12 +49,29 @@ public partial class AgregarCuenta : ContentPage
             DateTime fechaCorte = DateTime.ParseExact(fecha, "dd/MM/yyyy", null);
 
             fechaCorte = fechaCorte.AddHours(9);
-            //fechaCorte = DateTime.Now.AddSeconds(10);
 
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://adcuapi-bbb4a4c8h6bgezgz.mexicocentral-01.azurewebsites.net/api/pushNotification/");
+
+            PushNotification request = new PushNotification
+            {
+                Title = "Recordatorio de corte de cuenta",
+                Body = $"Tu cuenta {txtBanco.Text.Trim()} tiene corte el día de hoy.",
+                Token = Preferences.Get("deviceToken", "sin_token"),
+                SendAt = fechaCorte
+            };
+
+            var response = await httpClient.PostAsJsonAsync("GuardarNotificacion", request);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
         }
         catch (Exception)
         {
-            //await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
+            //await DisplayAlert("Error", "mmm:" + ex.Message, "OK");
             return;
         }
 
