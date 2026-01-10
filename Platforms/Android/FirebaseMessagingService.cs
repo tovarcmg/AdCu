@@ -10,8 +10,11 @@ public class MyFirebaseMessagingService : FirebaseMessagingService
     {
         base.OnNewToken(token);
 
+        Console.WriteLine("🔥 FCM TOKEN: " + token);
+
         System.Diagnostics.Debug.WriteLine("🔥 FCM TOKEN:");
         System.Diagnostics.Debug.WriteLine(token);
+        Preferences.Set("deviceToken", token);
     }
 
     public override void OnCreate()
@@ -19,5 +22,4 @@ public class MyFirebaseMessagingService : FirebaseMessagingService
         base.OnCreate();
         System.Diagnostics.Debug.WriteLine("🔥 FCM Service creado");
     }
-
 }
