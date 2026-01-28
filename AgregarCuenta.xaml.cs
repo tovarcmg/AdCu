@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -51,7 +52,11 @@ public partial class AgregarCuenta : ContentPage
             fechaCorte = fechaCorte.AddHours(9);
 
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://adcuapi-bbb4a4c8h6bgezgz.mexicocentral-01.azurewebsites.net/api/pushNotification/");
+            httpClient.BaseAddress = new Uri("https://luistovar1768184957980.1650254.misitiohostgator.com/");
+
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
 
             PushNotification request = new PushNotification
             {
@@ -61,12 +66,12 @@ public partial class AgregarCuenta : ContentPage
                 SendAt = fechaCorte
             };
 
-            var response = await httpClient.PostAsJsonAsync("GuardarNotificacion", request);
+            var response = await httpClient.PostAsJsonAsync("PushNotification.php", request);
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception(response.ReasonPhrase);
+                throw new Exception(content);
             }
         }
         catch (Exception)
