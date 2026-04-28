@@ -47,8 +47,8 @@ public partial class Login : ContentPage
         var result = await BiometricAuthenticationService.Default.AuthenticateAsync(
             new AuthenticationRequest()
             {
-                Title = "Biometric Request",
-                NegativeText = "Cancel authentication"
+                Title = "Autenticación",
+                NegativeText = "Cancelar"
             },
             CancellationToken.None
         );

@@ -9,13 +9,13 @@
              Margin="0,0,0,10"
              HorizontalTextAlignment="Center"
              Text="AdCu"
-             FontSize="16"/>
+             FontSize="30"/>
 
         <Label
-             Margin="0,0,0,10"
+             Margin="0,0,0,40"
              HorizontalTextAlignment="Center"
              Text="Administracion de cuentas"
-             FontSize="12"/>
+             FontSize="18"/>
 
         <Button x:Name="btnBio"
             MaximumWidthRequest="500"

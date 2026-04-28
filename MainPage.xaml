@@ -60,19 +60,40 @@
 
                                 <Grid RowDefinitions="Auto,*,Auto">
 
-                                    <!-- Logo -->
-                                    <Image Source="visa.png"
-                                       HeightRequest="40"
-                                       HorizontalOptions="End"/>
+                                    <!-- ARRIBA: Corte y Último pago -->
+                                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                                        <StackLayout>
+                                            <Label Text="Corte"
+                                               FontSize="10"
+                                               TextColor="White"/>
 
-                                    <!-- Número de tarjeta -->
+                                            <Label Text="{Binding Corte}"
+                                               FontSize="14"
+                                               TextColor="White"/>
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="1">
+                                            <Label Text="Ultimo pago"
+                                               FontSize="10"
+                                               TextColor="White"/>
+
+                                            <Label Text="{Binding UltPag}"
+                                                   WidthRequest="80"
+                                               FontSize="14"
+                                               TextColor="White"/>
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <!-- CENTRO: Número de tarjeta -->
                                     <Label Grid.Row="1"
                                        Text="{Binding numeroTarjeta}"
                                        FontSize="22"
                                        TextColor="White"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
                                        VerticalOptions="Center"/>
 
-                                    <!-- Titular y vencimiento -->
+                                    <!-- ABAJO: Banco y Adeudo -->
                                     <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
                                         <StackLayout>
                                             <Label Text="Banco/Servicio"
@@ -94,6 +115,7 @@
                                     </Grid>
 
                                 </Grid>
+
                             </Frame>
 
                             <Grid ColumnSpacing="10">
@@ -111,7 +133,7 @@
 
                                 <Button Grid.Column="1"
                                         Text="Modificar"
-                                        BackgroundColor="DeepSkyBlue"
+                                        BackgroundColor="Blue"
                                         Clicked="OnModificarClicked"
                                         CommandParameter="{Binding .}"/>
 

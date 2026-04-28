@@ -19,8 +19,8 @@ public partial class AgregarCuenta : ContentPage
     {
         if (string.IsNullOrWhiteSpace(txtBanco.Text) ||
             string.IsNullOrWhiteSpace(txtPago.Text) ||
-            string.IsNullOrWhiteSpace(txtCorte.Text) ||
-            string.IsNullOrWhiteSpace(txtUltPag.Text))
+            string.IsNullOrWhiteSpace(txtCorte.Date.ToString("dd/MM/yyyy")) ||
+            string.IsNullOrWhiteSpace(txtUltPag.Date.ToString("dd/MM/yyyy")))
         {
             await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
             return;
@@ -36,14 +36,14 @@ public partial class AgregarCuenta : ContentPage
         {
             Nombre = txtBanco.Text.Trim(),
             Deuda = txtPago.Text.Trim(),
-            Corte = txtCorte.Text.Trim(),
-            UltPag = txtUltPag.Text.Trim(),
+            Corte = txtCorte.Date.ToString("dd/MM/yyyy"),
+            UltPag = txtUltPag.Date.ToString("dd/MM/yyyy"),
             numeroTarjeta = string.IsNullOrWhiteSpace(txtNumero.Text) ? "" : Regex.Replace(txtNumero.Text.Trim(), ".{4}", "$0 ")
         });
 
         Preferences.Set("cuentasJSON", JsonSerializer.Serialize(ListaItems));
 
-        string fecha = txtCorte.Text.Trim();
+        string fecha = txtCorte.Date.ToString("dd/MM/yyyy");
 
         try
         {
@@ -82,8 +82,8 @@ public partial class AgregarCuenta : ContentPage
 
         txtBanco.Text = "";
         txtPago.Text = "";
-        txtCorte.Text = "";
-        txtUltPag.Text = "";
+        //txtCorte.Text = "";
+        //txtUltPag.Text = "";
         txtNumero.Text = "";
 
         await Navigation.PopAsync();

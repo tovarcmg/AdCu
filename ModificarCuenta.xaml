@@ -41,13 +41,13 @@
 
                     <VerticalStackLayout Spacing="10"
                                          Grid.Column="1">
-                        <Entry
+                        <DatePicker 
                             x:Name="txtCorte"
-                            Placeholder="Fecha de corte"/>
+                            Date="01/01/2026" />
 
-                        <Entry
+                        <DatePicker 
                             x:Name="txtUltPag"
-                            Placeholder="Fecha límite de pago"/>
+                            Date="01/01/2026" />
                     </VerticalStackLayout>
                 </Grid>
 

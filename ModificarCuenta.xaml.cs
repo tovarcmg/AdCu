@@ -26,8 +26,12 @@ public partial class ModificarCuenta : ContentPage
                 {
                     txtBanco.Text = item.Nombre;
                     txtPago.Text = item.Deuda;
-                    txtCorte.Text = item.Corte;
-                    txtUltPag.Text = item.UltPag;
+                    // DESPUÉS: Asignas fechas a los DatePicker
+                    if (!string.IsNullOrEmpty(item.Corte))
+                        txtCorte.Date = DateTime.Parse(item.Corte);
+
+                    if (!string.IsNullOrEmpty(item.UltPag))
+                        txtUltPag.Date = DateTime.Parse(item.UltPag);
                     txtNumero.Text = item.numeroTarjeta.Replace(" ","");
                 }
             }
@@ -38,8 +42,8 @@ public partial class ModificarCuenta : ContentPage
     {
         if (string.IsNullOrWhiteSpace(txtBanco.Text) ||
             string.IsNullOrWhiteSpace(txtPago.Text) ||
-            string.IsNullOrWhiteSpace(txtCorte.Text) ||
-            string.IsNullOrWhiteSpace(txtUltPag.Text))
+            string.IsNullOrWhiteSpace(txtCorte.Date.ToString("dd/MM/yyyy")) ||
+            string.IsNullOrWhiteSpace(txtUltPag.Date.ToString("dd/MM/yyyy")))
         {
             await DisplayAlert("Error", "Por favor, complete todos los campos.", "OK");
             return;
@@ -64,8 +68,8 @@ public partial class ModificarCuenta : ContentPage
         {
             Nombre = txtBanco.Text.Trim(),
             Deuda = txtPago.Text.Trim(),
-            Corte = txtCorte.Text.Trim(),
-            UltPag = txtUltPag.Text.Trim(),
+            Corte = txtCorte.Date.ToString("dd/MM/yyyy"),
+            UltPag = txtUltPag.Date.ToString("dd/MM/yyyy"),
             numeroTarjeta = string.IsNullOrWhiteSpace(txtNumero.Text) ? "" : Regex.Replace(txtNumero.Text.Trim(), ".{4}", "$0 ") 
         });
 
@@ -75,8 +79,8 @@ public partial class ModificarCuenta : ContentPage
         // 6️ Limpiar controles
         txtBanco.Text = string.Empty;
         txtPago.Text = string.Empty;
-        txtCorte.Text = string.Empty;
-        txtUltPag.Text = string.Empty;
+        //txtCorte.Text = string.Empty;
+        //txtUltPag.Text = string.Empty;
         txtNumero.Text = string.Empty;
 
         // 7️ Regresar
